@@ -1,8 +1,9 @@
 // JSON schema
 // Loosely based on the test URL from test.py
+
 {
     "id": "9a27aea6-df27-4322-907f-164396fcf3b0",
-    "title": "AUDIT COMMITTEE",
+    "agenda_header": "AUDIT COMMITTEE",
     "date": "July 21, 2022 at 9:30 AM",
     "location": {
         "location": "ENGINEERING TRADITIONS COMMITTEE ROOM",
@@ -46,5 +47,5 @@
                 "url":"value2"
             }
         ]
-    }],
+    }]
 }
