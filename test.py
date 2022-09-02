@@ -139,6 +139,20 @@ for agenda_item in agenda_item_containers:
     print('-----------------------------------\n\n\n')
     g+=1
 
+# def motion_formmatter(titles, moved_bys, descriptions, results, votes, attachment_names, attachment_links):
+#     obj = {}
+#     print(len(titles))
+
+#     for motion_index in range(len(titles)):
+#         obj["title"] = titles[motion_index]
+#         obj["moved_by"] = moved_bys[motion_index]
+#         obj["description"] = descriptions[motion_index]
+#         obj["result"] = results[motion_index]
+#         obj["votes"] = votes[motion_index]
+#         obj["attachments_names"] = attachment_names[motion_index]
+#         obj["attachments_links"] = attachment_links[motion_index]
+
+#     return obj
 
 # # Horizontal
 # while(child_node != None):
