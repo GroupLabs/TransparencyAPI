@@ -50,40 +50,63 @@ JSON_obj["attendance"] = {'present': present, 'also_present': also_present}
 
 
 # MM Body
-agenda_items = page_content.find_all("div", class_="AgendaItems")
+agenda_items = page_content.find("div", class_="AgendaItems")
 
 
 ## Body information
 agenda_item_containers = agenda_items.find_all("div", class_="AgendaItemContainer indent")
 
-roll_call = agenda_item_containers[0].find_all("p", class_="Body1")
+# roll_call = agenda_item_containers[0].find_all("p", class_="Body1")
 
-JSON_obj["roll_call"] = roll_call[2].text.rstrip('.').split(', ')
-
-
+# JSON_obj["roll_call"] = roll_call[2].text.rstrip('.').split(', and ')
 
 
-
+agenda_item_containers = agenda_items.children
 
 
 g = 1
 for agenda_item in agenda_item_containers:
     titles = [x.text for x in agenda_item.find_all("div", class_="AgendaItemTitle")]
     
+    # motions = agenda_item.find_all("ul", class_="AgendaItemMotions")
+
     motions = agenda_item.find_all("ul", class_="AgendaItemMotions")
 
     print(g)
-    g+=1
 
     if motions == None:
         print("No motions")
     else:
-        for motion in motions.children:
+        h = 1
+        for motion in motions:
+            print(str(g) + '.' + str(h))
+
+            # Get the motion title
+            motion_titles = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
+            motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_titles]
+
+            moved_by_list = [x.find("span", class_="Value") for x in motion.find_all("div", class_="MovedBy")]
+            moved_by_list  = [x.text for x in moved_by_list]
+
+            # Motion description
+            motion_description_list = [x.text for x in motion.find_all("div", class_="MotionText RichText")]
+
+            # Motion result
+            motion_result_list = [x.text for x in motion.find_all("div", class_="MotionResult")]
+
+            # Motion votes
+            motion_votes_list = [x.text[x.text.find(')') + 1:].split(', and ') for x in motion.find_all("table", class_="MotionVoters")]
+
+            # Motion Attachments
+
+            print(motion_titles) # title
+            # print("Moved by: " + str(moved_by_list)) # Moved by
+            print(motion_description_list) # Other details
+            # print("Result: " + str(motion_result_list)) # Result
+            # print("Votes: " + str(motion_votes_list)) # Votes
+            # # attachment links
             print()
-            # print(motion.text)
-
-            print("Moved by: " + motion.find("div", class_="MovedBy").find("span", class_="Value").text)
-
+            h+=1
 
 
     # item_children = agenda_item.find_all(attrs={'class': None})
@@ -98,6 +121,7 @@ for agenda_item in agenda_item_containers:
 
 
     print('-----------------------------------\n\n\n')
+    g+=1
 
 
 # # Horizontal
