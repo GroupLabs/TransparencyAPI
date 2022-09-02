@@ -56,10 +56,11 @@ agenda_items = page_content.find("div", class_="AgendaItems")
 ## Body information
 agenda_item_containers = agenda_items.find_all("div", class_="AgendaItemContainer indent")
 
-# roll_call = agenda_item_containers[0].find_all("p", class_="Body1")
+roll_call = agenda_item_containers[0].find_all("p", class_="Body1")
 
-# JSON_obj["roll_call"] = roll_call[2].text.rstrip('.').split(', and ')
+JSON_obj["roll_call"] = roll_call[2].text.rstrip('.').split(', and ')
 
+print(JSON_obj["roll_call"])
 
 agenda_item_containers = agenda_items.children
 
@@ -81,9 +82,13 @@ for agenda_item in agenda_item_containers:
         for motion in motions:
             print(str(g) + '.' + str(h))
 
+            motion_anchor = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
+
             # Get the motion title
-            motion_titles = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
-            motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_titles]
+            # motion_titles = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
+            # motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_titles]
+
+            motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_anchor]
 
             moved_by_list = [x.find("span", class_="Value") for x in motion.find_all("div", class_="MovedBy")]
             moved_by_list  = [x.text for x in moved_by_list]
@@ -98,13 +103,24 @@ for agenda_item in agenda_item_containers:
             motion_votes_list = [x.text[x.text.find(')') + 1:].split(', and ') for x in motion.find_all("table", class_="MotionVoters")]
 
             # Motion Attachments
+            motion_attachments_list = [x.find_all("a", class_="Link") for x in motion_anchor]
+            motion_attachments_list_names = []
+            motion_attachments_list_links = []
+            for x in motion_attachments_list:
+                motion_attachments_list_names.append([y.text for y in x]) # ?
+                motion_attachments_list_links.append([y['href'] for y in x])
+
+            # motion_attachments_list_names = [x.text for x in motion_attachments_list if x != None]
+            # motion_attachments_list_links = [x['href'] for x in motion_attachments_list if x != None]
+            # motion_attachments_list = [x.find("a") for x in motion.find_all("div", class_="MotionAttachments")]
 
             print(motion_titles) # title
-            # print("Moved by: " + str(moved_by_list)) # Moved by
+            print("Moved by: " + str(moved_by_list)) # Moved by
             print(motion_description_list) # Other details
-            # print("Result: " + str(motion_result_list)) # Result
-            # print("Votes: " + str(motion_votes_list)) # Votes
-            # # attachment links
+            print("Result: " + str(motion_result_list)) # Result
+            print("Votes: " + str(motion_votes_list)) # Votes
+            print(motion_attachments_list_names[0]) # attachment links
+            print(motion_attachments_list_links[0]) # attachment links
             print()
             h+=1
 
