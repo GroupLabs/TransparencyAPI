@@ -40,7 +40,7 @@ Find more meeting minutes here: [meeting minutes dir](https://pub-calgary.escrib
 RETRIEVING:
 - [ ] meeting UID
 - [x] who is present in meeting
-- [ ] roll call
+- [x] roll call
 - [ ] motions
   - [ ] title
   - [ ] who it was moved by
