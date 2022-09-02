@@ -38,7 +38,7 @@ Find more meeting minutes here: [meeting minutes dir](https://pub-calgary.escrib
 ## Tasks
 
 RETRIEVING:
-- [ ] meeting UID
+- [x] meeting UID
 - [x] who is present in meeting
 - [x] roll call
 - [ ] motions
