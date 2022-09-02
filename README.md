@@ -41,14 +41,15 @@ RETRIEVING:
 - [x] meeting UID
 - [x] who is present in meeting
 - [x] roll call
-- [ ] motions
-  - [ ] title
-  - [ ] who it was moved by
-  - [ ] other details
-  - [ ] whether the motion was carried
-  - [ ] attachment links
+- [x] motions
+  - [x] title
+  - [x] who it was moved by
+  - [x] other details
+  - [x] whether the motion was carried
+  - [x] attachment links
 
 OTHER:
+- [ ] formatting
 - [ ] transforming to JSON
 
 BONUS:
