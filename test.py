@@ -5,11 +5,6 @@ from urllib.parse import urlparse, parse_qs
 # REQUIREMENTS: https://pixeltree.notion.site/City-Council-Scraping-34a2f5a24d59400faf9a128f2653ebf2
 # Meeting Minutes Directory: https://pub-calgary.escribemeetings.com
 
-# TODO
-# 1. JSON Structure, serialize
-# 2. Complete the rest of the fields
-# 3. Classify using spaCy
-
 # Object to be seriliazed
 JSON_obj = {}
 
