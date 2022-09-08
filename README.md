@@ -6,6 +6,18 @@ This project is part of a collaborative effort with Pixeltree Inc. to build a mo
 
 ---
 
+*September 7, 2022*
+
+To improve the usability of the application, let's use state-of-the-art language models to add information to the response. A few tasks we will undertake:
+
+1. Summarization
+2. Named Entity Recognition
+3. Question Answering
+
+For this, we will review models from Huggingface, and pipelines from spaCy.
+
+---
+
 *August 24, 2022*
 
 The program will be given a url as an input. It should retuen a JSON output of all the contents of the HTML document. Take a look at an example input:
