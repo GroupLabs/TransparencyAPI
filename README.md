@@ -14,7 +14,7 @@ To improve the usability of the application, let's use state-of-the-art language
 2. Named Entity Recognition
 3. Question Answering
 
-For this, we will review models from Huggingface, and pipelines from spaCy.
+For this, we will review models from [Huggingface](https://huggingface.co/models), and pipelines from [spaCy](https://spacy.io/models/en).
 
 ---
 
@@ -61,15 +61,16 @@ RETRIEVING:
   - [x] attachment links
 
 OTHER:
-- [ ] formatting
-- [ ] transforming to JSON
+- [x] formatting
+- [x] transforming to JSON
 
 BONUS:
 - [ ] add into REST API
-
-Use this repository to your heart's content. Just ensure that you don't overwrite other's work by building on your own branch. We will merge together on Friday! If you have any questions, otr get stuck on anything do not hesitate to reach out. Have fun! :smile:
 
 ## References
 - [Beautiful Soup Simple Tutorial](https://realpython.com/beautiful-soup-web-scraper-python/)
 - [Beautiful Soup Docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
+---
+
+Use this repository to your heart's content. Just ensure that you don't overwrite other's work by building on your own branch. We will merge together on Friday! If you have any questions, otr get stuck on anything do not hesitate to reach out. Have fun! :smile:
