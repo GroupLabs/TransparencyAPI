@@ -11,7 +11,7 @@ First, ensure all dependencies are installed in your environment (listed in requ
 
 Then, to run the program, follow the command below:
 
-python web_scraper.py [REQUIRED: URL; wrap in quotes] [OPTIONAL: output directory]
+`python web_scraper.py [REQUIRED: URL; wrap in quotes] [OPTIONAL: output directory]`
 
 ---
 
