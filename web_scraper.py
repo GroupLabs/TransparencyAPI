@@ -1,31 +1,45 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
+
+from utils import isValidURL
+
 import json
 import sys
+import os
 
 # REQUIREMENTS: https://pixeltree.notion.site/City-Council-Scraping-34a2f5a24d59400faf9a128f2653ebf2
 # Meeting Minutes Directory: https://pub-calgary.escribemeetings.com
 
-# INPUT: Valid URL pointing to meeting minutes as argument one on CLI
+# INPUT (arg 1): Valid URL pointing to meeting minutes. Needs to be wrapped in quotes
+# OPTIONAL INPUT (arg 2): Output directory
 # OUTPUT: JSON document containing required information scraped from input URL
 
 # Debug mode
-DEBUG = True
-
-# Object to be seriliazed
-JSON_obj = {}
-
-
-# if DEBUG:
-#     if len(sys.argv) == 1:
-#         URL = "https://pub-calgary.escribemeetings.com/Meeting.aspx?Id=9a27aea6-df27-4322-907f-164396fcf3b0&Agenda=PostMinutes&lang=English"
-
+DEBUG = False
 
 # URL to scrape
 URL = str(sys.argv[1])
 
-# getting meeting ID
+while not isValidURL(URL):
+    print("Invalid or missing URL input")
+    print("Please enter a URL now:")
+
+    URL = input()
+
+# Get output directory
+out_dir = ""
+if len(sys.argv) == 3:
+    out_dir = sys.argv[2]
+else:
+    out_dir = os.getcwd()
+
+###
+
+# Object to be seriliazed
+JSON_obj = {}
+
+# Get meeting ID
 page = requests.get(URL)
 o = urlparse(URL)
 query = parse_qs(o.query)
@@ -38,7 +52,7 @@ soup = BeautifulSoup(page.content, "html.parser")
 # Most of the page content is found in this container
 page_content = soup.find(id="package-container")
 
-
+###
 
 # MM Header
 agenda_header = page_content.find("header", class_="AgendaHeader")
@@ -60,73 +74,75 @@ present = [x.text for x in attendance_table[2].find_all("li")]
 also_present = [x.text for x in attendance_table[5].find_all("li")]
 JSON_obj["attendance"] = {'present': present, 'also_present': also_present}
 
+###
 
 # MM Body
 agenda_items = page_content.find("div", class_="AgendaItems")
 
-
 ## Body information
+
+# Get item containers
 agenda_item_containers = agenda_items.find_all("div", class_="AgendaItemContainer indent")
 
+# Get roll call
 roll_call = agenda_item_containers[0].find_all("p", class_="Body1")
-
 JSON_obj["roll_call"] = roll_call[2].text.rstrip('.').replace(', and ', ', ').split(', ')
 
-print(JSON_obj["roll_call"])
+if DEBUG:
+    print(JSON_obj["roll_call"])
 
+# Get generator of item containers
 agenda_item_containers = agenda_items.children
 
-
-g = 1
+item_number = 1
 for agenda_item in agenda_item_containers:
+
+    # Get titles
     titles = [x.text for x in agenda_item.find_all("div", class_="AgendaItemTitle")]
     
-    # motions = agenda_item.find_all("ul", class_="AgendaItemMotions")
-
+    # Get each motion in each item
     motions = agenda_item.find_all("ul", class_="AgendaItemMotions")
 
-    print(g)
+    if DEBUG:
+        print(item_number)
 
-    if motions == None:
-        print("No motions")
-    else:
-        h = 1
+    if motions != None:
+        item_sub_number = 1
 
         for motion in motions:
-            motion_obj = {}
-            print(str(g) + '.' + str(h))
 
+            # Dictionary to store all motion info
+            motion_obj = {}
+
+            if DEBUG:
+                print(str(item_number) + '.' + str(item_sub_number))
+
+            # Place "anchor"
             motion_anchor = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
 
-            # Get the motion title
-            # motion_titles = [x.parent.parent.parent.parent for x in motion.find_all("div", class_="MotionText RichText")]
-            # motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_titles]
-
+            # Get motion title
             motion_titles = [x.find("div", class_="AgendaItemTitle").text.strip() for x in motion_anchor]
 
+            # Get list of who the motion is moved by
             moved_by_list = [x.find("span", class_="Value") for x in motion.find_all("div", class_="MovedBy")]
             moved_by_list  = [x.text for x in moved_by_list]
 
-            # Motion description
+            # Get motion description
             motion_description_list = [x.text for x in motion.find_all("div", class_="MotionText RichText")]
 
-            # Motion result
+            # Get motion result
             motion_result_list = [x.text for x in motion.find_all("div", class_="MotionResult")]
 
-            # Motion votes
+            # Get motion votes
             motion_votes_list = [x.text[x.text.find(')') + 1:].split(', and ') for x in motion.find_all("table", class_="MotionVoters")]
 
-            # Motion Attachments
+            # Get motion attachments
             motion_attachments_list = [x.find_all("a", class_="Link") for x in motion_anchor]
             motion_attachments_list_names = []
             motion_attachments_list_links = []
             for x in motion_attachments_list:
                 motion_attachments_list_names.append([y.text for y in x]) # ?
                 motion_attachments_list_links.append([y['href'] for y in x])
-
-            # motion_attachments_list_names = [x.text for x in motion_attachments_list if x != None]
-            # motion_attachments_list_links = [x['href'] for x in motion_attachments_list if x != None]
-            # motion_attachments_list = [x.find("a") for x in motion.find_all("div", class_="MotionAttachments")]
 
             motion_obj["titles"] = motion_titles
             motion_obj["moved_by"] = moved_by_list
@@ -136,81 +152,28 @@ for agenda_item in agenda_item_containers:
             motion_obj['attachment_names'] = motion_attachments_list_names[0]
             motion_obj['attachment_links'] = motion_attachments_list_links[0]
 
-            print(motion_titles) # title
-            print("Moved by: " + str(moved_by_list)) # Moved by
-            print(motion_description_list) # Other details
-            print("Result: " + str(motion_result_list)) # Result
-            print("Votes: " + str(motion_votes_list)) # Votes
-            print(motion_attachments_list_names[0]) # attachment names
-            print(motion_attachments_list_links[0]) # attachment links
-            print()
 
-            JSON_obj[f'{g}.{h}'] = motion_obj
+            if DEBUG:
+                print(str(item_number) + '.' + str(item_sub_number))
+                print(motion_titles) # title
+                print("Moved by: " + str(moved_by_list)) # Moved by
+                print(motion_description_list) # Other details
+                print("Result: " + str(motion_result_list)) # Result
+                print("Votes: " + str(motion_votes_list)) # Votes
+                print(motion_attachments_list_names[0]) # attachment names
+                print(motion_attachments_list_links[0]) # attachment links
+                print()
 
-            h+=1
+            # Append to JSON object
+            JSON_obj[f'{item_number}.{item_sub_number}'] = motion_obj
 
+            item_sub_number+=1
 
-    # item_children = agenda_item.find_all(attrs={'class': None})
+    if DEBUG:
+        print('-----------------------------------\n\n\n')
 
-    # print(len(item_children))
+    item_number+=1
 
-    # for child in item_children:
-    #     print(child.find("div", class_="AgendaItemTitle"))
-
-
-
-
-
-    print('-----------------------------------\n\n\n')
-    g+=1
-
-
-
-
-with open("/Users/noelthomas/Documents/GitHub/TransparencyAPI/sample.json", "w") as out:
+# Serialize and write to "meeting_minutes.json"
+with open(f"{out_dir}/meeting_minutes.json", "w") as out:
     json.dump(JSON_obj, out, indent=4)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def motion_formmatter(titles, moved_bys, descriptions, results, votes, attachment_names, attachment_links):
-#     obj = {}
-#     print(len(titles))
-
-#     for motion_index in range(len(titles)):
-#         obj["title"] = titles[motion_index]
-#         obj["moved_by"] = moved_bys[motion_index]
-#         obj["description"] = descriptions[motion_index]
-#         obj["result"] = results[motion_index]
-#         obj["votes"] = votes[motion_index]
-#         obj["attachments_names"] = attachment_names[motion_index]
-#         obj["attachments_links"] = attachment_links[motion_index]
-
-#     return obj
-
-# # Horizontal
-# while(child_node != None):
-#     print(child_node)
-#     child_node = child_node.next_sibling
-
-
-# # Depth
-# while(child != None):
-#     print(agenda_item)
-#     agenda_item = agenda_item.child
-
-
-
-
-
-
