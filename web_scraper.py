@@ -76,7 +76,7 @@ except AttributeError:
     JSON_obj["location"] = ""
 
 # Get the attendence (seperated by who can and can't vote)
-attendance_table = agenda_header.find("div", class_="AgendaHeaderAttendanceTable").find_all("div")
+attendance_table = agenda_header.find(class_="AgendaHeaderAttendanceTable").find_all("div")
 try:
     present = [x.text for x in attendance_table[2].find_all("li")]
 except IndexError:
