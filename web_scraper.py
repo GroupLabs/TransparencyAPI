@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
 from utils import isValidURL
+from nlp import summarizer
 
 import json
 import sys
@@ -18,6 +19,9 @@ import os
 # Debug mode
 DEBUG = False
 
+if __name__ == "__main__":
+    DEBUG = True
+
 def minutes_scraper(URL=""):
     if not isValidURL(URL):
         print("Invalid or missing URL input")
@@ -30,6 +34,8 @@ def minutes_scraper(URL=""):
     out_dir = os.getcwd()
 
     ###
+
+    s = summarizer() # Summarizer object
 
     # Object to be seriliazed
     JSON_obj = {}
@@ -164,6 +170,13 @@ def minutes_scraper(URL=""):
                 motion_obj["votes"] = motion_votes_list
                 motion_obj['attachment_names'] = motion_attachments_list_names[0]
                 motion_obj['attachment_links'] = motion_attachments_list_links[0]
+                motion_obj['attachment_count'] = len(motion_attachments_list_names[0])
+
+                for desc in motion_description_list:                
+                    if len(desc.split()) > s.max_length:
+                        motion_obj['summary'] = s.summarize(text=desc)[0]
+                    else:
+                        motion_obj['summary'] = "Too short to summarize"
 
 
                 if DEBUG:
@@ -186,6 +199,9 @@ def minutes_scraper(URL=""):
             print('-----------------------------------\n\n\n')
 
         item_number+=1
+
+
+    
 
 
     # # Serialize and write to "meeting_minutes.json"

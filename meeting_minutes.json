@@ -55,7 +55,11 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": {
+            "summary_text": "Agenda to be confirmed, after amendment, by setting Item 7.6, Status Update to Off-site Levy External Audit Recommendations"
+        }
     },
     "4.1": {
         "titles": [
@@ -80,7 +84,9 @@
         ],
         "attachment_links": [
             "filestream.ashx?DocumentId=216113"
-        ]
+        ],
+        "attachment_count": 1,
+        "summary": "Too short to summarize"
     },
     "7.1": {
         "titles": [
@@ -106,7 +112,11 @@
         ],
         "attachment_links": [
             "filestream.ashx?DocumentId=216120"
-        ]
+        ],
+        "attachment_count": 1,
+        "summary": {
+            "summary_text": "Audit Committee Bylaw 33M2020, Section 5(c)(ii). Verbal Report AC2022-0860,"
+        }
     },
     "7.2": {
         "titles": [
@@ -142,7 +152,11 @@
             "filestream.ashx?DocumentId=216117",
             "filestream.ashx?DocumentId=216118",
             "filestream.ashx?DocumentId=216119"
-        ]
+        ],
+        "attachment_count": 6,
+        "summary": {
+            "summary_text": "Council will receive Report AC2022-0800 and the presentation for information and discussion pursuant to Audit Committee Bylaw 33M2020"
+        }
     },
     "7.3": {
         "titles": [
@@ -210,7 +224,11 @@
             "filestream.ashx?DocumentId=216102",
             "filestream.ashx?DocumentId=216103",
             "filestream.ashx?DocumentId=216104"
-        ]
+        ],
+        "attachment_count": 15,
+        "summary": {
+            "summary_text": "Report AC2022-0714, to be reviewed 2036 June 24. Audit Committee: Receive this Report and presentation for the"
+        }
     },
     "7.4": {
         "titles": [
@@ -254,7 +272,11 @@
             "filestream.ashx?DocumentId=216087",
             "filestream.ashx?DocumentId=216088",
             "filestream.ashx?DocumentId=216089"
-        ]
+        ],
+        "attachment_count": 10,
+        "summary": {
+            "summary_text": "Report AC2022-0677 to be reviewed by 2037 July 21. Audit Committee: Receive this Report and presentation for the"
+        }
     },
     "7.5": {
         "titles": [
@@ -282,7 +304,11 @@
         "attachment_links": [
             "filestream.ashx?DocumentId=216105",
             "filestream.ashx?DocumentId=216106"
-        ]
+        ],
+        "attachment_count": 2,
+        "summary": {
+            "summary_text": "Review and approve the Deloitte 2022 Audit Service Plan and Fees (Attachment); andRecommend that Council receive this Report."
+        }
     },
     "7.6": {
         "titles": [
@@ -314,7 +340,11 @@
             "filestream.ashx?DocumentId=216108",
             "filestream.ashx?DocumentId=216109",
             "filestream.ashx?DocumentId=216110"
-        ]
+        ],
+        "attachment_count": 4,
+        "summary": {
+            "summary_text": "Review the information contained in Attachment 3, in conjunction with the current Report AC2022-0593, to give a full scope"
+        }
     },
     "7.7": {
         "titles": [
@@ -344,7 +374,11 @@
             "filestream.ashx?DocumentId=216077",
             "filestream.ashx?DocumentId=216078",
             "filestream.ashx?DocumentId=216079"
-        ]
+        ],
+        "attachment_count": 3,
+        "summary": {
+            "summary_text": "Recommend that Council receive this Report for the Corporate Record. That with respect to Report AC2022-0876, the following be approved"
+        }
     },
     "7.8": {
         "titles": [
@@ -372,7 +406,11 @@
         "attachment_links": [
             "filestream.ashx?DocumentId=216111",
             "filestream.ashx?DocumentId=216112"
-        ]
+        ],
+        "attachment_count": 2,
+        "summary": {
+            "summary_text": "Report AC2022-0887 will be submitted to the Audit Committee for consideration."
+        }
     },
     "10.1": {
         "titles": [
@@ -400,7 +438,9 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": "Too short to summarize"
     },
     "10.2": {
         "titles": [
@@ -421,7 +461,11 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": {
+            "summary_text": "The Audit Committee recommends the City Auditor\u2019s Office 2023-2026 Service Plan and Budget;Recommend Council approval at the 20"
+        }
     },
     "10.3": {
         "titles": [
@@ -442,7 +486,11 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": {
+            "summary_text": "That the Audit Committee direct that the Closed Meeting discussions remain confidential pursuant to Section 24 (Advice from Officials) of the Freedom of Information"
+        }
     },
     "10.4": {
         "titles": [
@@ -463,7 +511,11 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": {
+            "summary_text": "Audit Committee recommends that Council:\u00a0Receive this Report and attachments for the Corporate Record; andDirect that the Report, Attach"
+        }
     },
     "12.1": {
         "titles": [
@@ -484,6 +536,8 @@
             ]
         ],
         "attachment_names": [],
-        "attachment_links": []
+        "attachment_links": [],
+        "attachment_count": 0,
+        "summary": "Too short to summarize"
     }
 }
