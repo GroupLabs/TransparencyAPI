@@ -1,5 +1,5 @@
-from web_scraper import minutes_scraper
-from utils import isValidURL
+from web_scraper_summarizer import minutes_scraper
+from utils.utils import isValidURL
 
 import json
 import sys

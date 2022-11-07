@@ -2,9 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
-from utils import isValidURL
-from nlp import summarizer
-
 import json
 import sys
 import os
@@ -15,12 +12,6 @@ import os
 # INPUT (arg 1): Valid URL pointing to meeting minutes. Needs to be wrapped in quotes
 # OPTIONAL INPUT (arg 2): Output directory
 # OUTPUT: JSON document containing required information scraped from input URL
-
-# Debug mode
-DEBUG = False
-
-if __name__ == "__main__":
-    DEBUG = True
 
 def minutes_scraper(URL=""):
     if not isValidURL(URL):
@@ -172,11 +163,11 @@ def minutes_scraper(URL=""):
                 motion_obj['attachment_links'] = motion_attachments_list_links[0]
                 motion_obj['attachment_count'] = len(motion_attachments_list_names[0])
 
-                for desc in motion_description_list:                
-                    if len(desc.split()) > s.max_length:
-                        motion_obj['summary'] = s.summarize(text=desc)[0]
-                    else:
-                        motion_obj['summary'] = "Too short to summarize"
+                # for desc in motion_description_list:                
+                #     if len(desc.split()) > s.max_length:
+                #         motion_obj['summary'] = s.summarize(text=desc)[0]
+                #     else:
+                #         motion_obj['summary'] = "Too short to summarize"
 
 
                 if DEBUG:
