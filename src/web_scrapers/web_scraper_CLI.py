@@ -1,11 +1,15 @@
-from web_scraper_summarizer import minutes_scraper
-from utils.utils import isValidURL
+from .web_scraper_summarizer import minutes_scraper_sum
+from ..utils.utils import isValidURL
 
 import json
 import sys
 import os
 
 # Web scraping CLI
+
+# To run this script use:
+# python -m src.web_scrapers.web_scraper_CLI.py <URL> <output_dir>
+# from the root directory
 
 # Debug mode
 DEBUG = False
@@ -28,7 +32,7 @@ else:
 
 ###
 
-JSON_obj = minutes_scraper(URL)
+JSON_obj = minutes_scraper_sum(URL)
 
 # Serialize and write to "meeting_minutes.json"
 with open(f"{out_dir}/meeting_minutes.json", "w") as out:

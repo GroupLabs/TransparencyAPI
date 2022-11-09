@@ -2,12 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
-from utils.utils import isValidURL
-from utils.nlp import summarizer
+from ..utils.utils import isValidURL
+from ..utils.nlp import summarizer
 
 import json
 import sys
 import os
+
 
 # REQUIREMENTS: https://pixeltree.notion.site/City-Council-Scraping-34a2f5a24d59400faf9a128f2653ebf2
 # Meeting Minutes Directory: https://pub-calgary.escribemeetings.com
