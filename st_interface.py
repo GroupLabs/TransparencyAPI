@@ -6,8 +6,6 @@ from st_utils.get_data import get_all_data, get_meeting_by_id
 
 st.title('Transparency API Interface')
 
-st.header('Search - Semantic?')
-
 # number = st.number_input('Insert a number', step=1, min_value=0, max_value=len(data)-1, help="Enter meeting id")
 # st.write('The current number is ', number)
 
@@ -15,7 +13,6 @@ st.header('Search - Semantic?')
 
 meeting_ID = st.text_input('Meeting ID:')
 st.write('Selected ID: ', meeting_ID)
-
 
 data = get_meeting_by_id(number)
 

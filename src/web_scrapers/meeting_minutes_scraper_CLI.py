@@ -1,4 +1,4 @@
-from .web_scraper_summarizer import minutes_scraper_sum
+from .meeting_minutes_scraper_summarizer import minutes_scraper_sum
 from ..utils.utils import isValidURL
 
 import json

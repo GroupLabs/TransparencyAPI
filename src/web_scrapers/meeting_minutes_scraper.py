@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
 import json
-import sys
 import os
 
 # REQUIREMENTS: https://pixeltree.notion.site/City-Council-Scraping-34a2f5a24d59400faf9a128f2653ebf2
