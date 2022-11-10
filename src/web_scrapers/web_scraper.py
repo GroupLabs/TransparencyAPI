@@ -26,8 +26,6 @@ def minutes_scraper(URL=""):
 
     ###
 
-    s = summarizer() # Summarizer object
-
     # Object to be seriliazed
     JSON_obj = {}
 

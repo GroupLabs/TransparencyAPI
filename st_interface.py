@@ -13,9 +13,8 @@ st.header('Search - Semantic?')
 
 # data[number]
 
-number = st.text_input('Meeting ID:')
-st.write('Selected ID: ', number)
-
+meeting_ID = st.text_input('Meeting ID:')
+st.write('Selected ID: ', meeting_ID)
 
 
 data = get_meeting_by_id(number)

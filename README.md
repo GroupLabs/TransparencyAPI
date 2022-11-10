@@ -14,3 +14,10 @@ Then, to run the program, follow the command below:
 `python web_scraper.py [REQUIRED: URL; wrap in quotes] [OPTIONAL: output directory]`
 
 --- 
+
+# Objectives:
+
+1. Populate database
+2. Non-aggregate and aggregate methods
+2. a. Summarizer, NER, 
+2. b. Semantic search
