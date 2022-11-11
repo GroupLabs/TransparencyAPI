@@ -56,7 +56,7 @@ from time import sleep
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 10)
 
-el = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div.panel-contents.MeetingTypeContainer.Rendered.Loaded")))
+el = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div.panel-contents.MeetingTypeContainer")))
 
 directory_URL = "https://pub-calgary.escribemeetings.com/?Year=2022"
 
@@ -76,10 +76,10 @@ for past_meeting in past_meetings:
         # print(past_meeting.get_attribute("class"))
         # print(past_meeting.find_element(By.TAG_NAME, "div").get_attribute("class"))
 
-        # wait.until(lambda d: 'Loading' not in el.get_attribute('class'))
-        sleep(3)
+        wait.until(lambda d: 'Loaded' in el.get_attribute('class'))
+        # sleep(3)
 
-        resource_container = past_meeting.find_element(By.TAG_NAME, "div").find_element(By.TAG_NAME, "div").get_attribute("class")
+        resource_container = past_meeting.find_element(By.TAG_NAME, "div").get_attribute("class")
 
         print(resource_container)
 
