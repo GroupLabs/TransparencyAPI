@@ -27,7 +27,7 @@ def directory_scraper(URL="https://pub-calgary.escribemeetings.com/?Year=2022", 
     if upload_to_db:
         client = connectMongo()
         db = client[database]
-        today = dt.today()
+        today = dt.today().strftime('%Y-%m-%d')
 
     # initialize webdriver
     driver = webdriver.Chrome()
@@ -114,7 +114,7 @@ def directory_scraper(URL="https://pub-calgary.escribemeetings.com/?Year=2022", 
 
     log = open(f"log_{today}.txt", "r")
 
-    num_logs_today = len(db.find({"date": today}))
+    num_logs_today = db.escribe_meetings.count_documents({"date": today})
 
     db.logs.insert_one({"date": today, "log_number": num_logs_today, "log":  log.read() })
 
