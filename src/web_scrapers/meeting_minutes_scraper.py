@@ -5,6 +5,8 @@ from urllib.parse import urlparse, parse_qs
 import json
 import os
 
+from ..utils.utils import isValidURL
+
 # REQUIREMENTS: https://pixeltree.notion.site/City-Council-Scraping-34a2f5a24d59400faf9a128f2653ebf2
 # Meeting Minutes Directory: https://pub-calgary.escribemeetings.com
 
@@ -12,7 +14,7 @@ import os
 # OPTIONAL INPUT (arg 2): Output directory
 # OUTPUT: JSON document containing required information scraped from input URL
 
-def minutes_scraper(URL=""):
+def minutes_scraper(URL="", DEBUG=False):
     if not isValidURL(URL):
         print("Invalid or missing URL input")
         print("Please enter a URL now:")

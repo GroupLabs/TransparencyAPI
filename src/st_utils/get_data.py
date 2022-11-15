@@ -1,6 +1,6 @@
 import streamlit as st
 
-from utils.db_connect import connectMongo
+from ..utils.db_connect import connectMongo
 
 @st.experimental_singleton
 def init_connection():
