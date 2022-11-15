@@ -14,13 +14,6 @@ search_selectbox = st.sidebar.selectbox(
     ("Meeting ID", "Date", "Meeting Type")
 )
 
-# # Using "with" notation
-# with st.sidebar:
-#     add_radio = st.radio(
-#         "Choose a shipping method",
-#         ("Standard (5-15 days)", "Express (2-5 days)")
-#     )
-
 if search_selectbox == "Meeting ID":
     meeting_id = st.text_input('Meeting ID:')
     if meeting_id:
